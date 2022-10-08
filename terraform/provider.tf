@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "./vpc"
+  source = "./modules/dev"
   CIDR_BLOCK = var.CIDR_BLOCK
   PROJECT_NAME = var.PROJECT_NAME
 }
