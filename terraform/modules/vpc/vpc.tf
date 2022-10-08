@@ -15,10 +15,6 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-output "availability_count" {
-  value = "6"
-}
-
 #create public subnets
 resource "aws_subnet" "public-subnet" {
   count      = length(data.aws_availability_zones.available)
