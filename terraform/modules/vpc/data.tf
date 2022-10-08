@@ -5,5 +5,5 @@ data "aws_availability_zones" "available" {
 }
 
 output "availability_count" {
-  value = "6"
+  value = length(data.aws_availability_zones.available)
 }
