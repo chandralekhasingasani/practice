@@ -31,8 +31,8 @@ resource "aws_subnet" "public-subnet" {
 resource "aws_subnet" "private-subnet" {
   count      = length(data.aws_availability_zones.available.names)
   vpc_id     = aws_vpc.main.id
-  cidr_block = cidrsubnet(var.CIDR_BLOCK,8, count.index)
-  availability_zone = element(data.aws_availability_zones.available.names , count.index+1+length(data.aws_availability_zones.available.names))
+  cidr_block = cidrsubnet(var.CIDR_BLOCK,8, count.index+1+length(data.aws_availability_zones.available.names))
+  availability_zone = element(data.aws_availability_zones.available.names , count.index)
   tags = {
     Name = "${var.PROJECT_NAME}-PRIVATE-SUBNET-${count.index+1}"
   }
