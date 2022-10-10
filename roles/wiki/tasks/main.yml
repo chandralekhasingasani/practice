@@ -34,3 +34,11 @@
     path: /usr/local/apache2/conf/httpd.conf
     regexp: 'index.html'
     replace: '      DirectoryIndex index.html index.php'
+
+- name: Add AddType configuration
+  ansible.builtin.blockinfile:
+    path: /usr/local/apache2/conf/httpd.conf
+    insertafter: "#AddType application/x-gzip"
+    block: |
+      AddType application/x-httpd-php .php
+      AddType application/x-httpd-php-source .phps
