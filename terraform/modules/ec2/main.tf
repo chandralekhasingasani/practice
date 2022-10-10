@@ -38,7 +38,7 @@ resource "aws_s3_bucket_object" "object" {
 resource "aws_instance" "web" {
   depends_on    = [aws_key_pair.deployer]
   count         = 1
-  ami           = data.aws_ami.centos.id
+  ami           = "ami-026b57f3c383c2eec"
   instance_type = "t3.micro"
   subnet_id     = element(var.PUBLIC_SUBNET_IDS,count.index)
   key_name      = aws_key_pair.deployer.key_name
