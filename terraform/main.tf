@@ -17,3 +17,12 @@ module "rds" {
   VPC_ID = module.vpc.VPC_ID
   CIDR_BLOCK = var.CIDR_BLOCK
 }
+
+module "ec2" {
+  source = "./modules/ec2"
+  DB_PASSWORD = var.DB_PASSWORD
+  DB_USERNAME = var.DB_USERNAME
+  PRIVATE_SUBNET_IDS = module.vpc.PRIVATE_SUBNET_IDS
+  VPC_ID = module.vpc.VPC_ID
+  CIDR_BLOCK = var.CIDR_BLOCK
+}
