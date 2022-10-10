@@ -57,7 +57,7 @@ resource "aws_instance" "web" {
     inline = [
       "sudo yum install epel-release -y",
       "sudo yum install mariadb git ansible -y",
-      "ansible-pull  -U https://github.com/r-devops/tw-setup.git deploy.yml -e DBHOST=${var.DBHOST} -e DBPASS=${var.DBPASS} -e DBUSER=${var.DBUSER} -e IPADDRESS=${curl -s ifconfig.me}"
+      "ansible-pull  -U https://github.com/r-devops/tw-setup.git deploy.yml -e DBHOST=${var.DBHOST} -e DBPASS=${var.DBPASS} -e DBUSER=${var.DBUSER} -e IPADDRESS=$(curl -s ifconfig.me)"
     ]
   }
 }
