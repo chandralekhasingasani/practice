@@ -3,3 +3,25 @@
     name: "{{item}}"
     state: present
   loop: ["apr-util-devel", "gcc", "pcre-devel", "libxml2-devel", "mariadb"]
+
+- name: Install apache
+  ansible.builtin.unarchive:
+    src: "https://www-eu.apache.org/dist//httpd/httpd-2.4.39.tar.gz"
+    dest: /root
+
+- name: Compile Apache
+  shell: cd /root/httpd-2.4.39 ;./configure --enable-so;make;make install
+
+- name: Create hard link
+  ansible.builtin.copy:
+    src: httpd
+    dest: /etc/init.d/httpd
+    mode: '0755'
+
+- name: Install php
+  ansible.builtin.unarchive:
+    src: "https://www.php.net/distributions/php-7.3.7.tar.gz"
+    dest: /root
+
+- name: Install dependencies
+  shell: cd /root/php-7.3.7 && ./configure --with-apxs2=/usr/local/apache2/bin/apxs --enable-mbstring --enable-mysqlnd --with-mysqli && make clean && make && make install
