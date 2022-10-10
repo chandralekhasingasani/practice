@@ -41,7 +41,7 @@ resource "aws_instance" "web" {
   ami           = "ami-026b57f3c383c2eec"
   instance_type = "t3.micro"
   subnet_id     = element(var.PUBLIC_SUBNET_IDS,count.index)
-  key_name      = aws_key_pair.deployer.key_name
+  key_name      = "deployer-key1"
 
   vpc_security_group_ids = [aws_security_group.allow_http_internal.id,aws_security_group.allow_ssh.id]
   tags = {
@@ -52,7 +52,7 @@ resource "aws_instance" "web" {
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
-      user     = "centos"
+      user     = "ec2-user"
       private_key = "${file("deployer")}"
       host     = "${element(aws_instance.web.*.private_ip,count.index)}"
     }
