@@ -17,6 +17,7 @@
     src: httpd
     dest: /etc/init.d/httpd
     mode: '0755'
+    remote_src: yes
 
 - name: Install php
   ansible.builtin.unarchive:
