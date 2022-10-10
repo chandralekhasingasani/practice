@@ -2,7 +2,7 @@
 # Create a new load balancer
 resource "aws_elb" "bar" {
   name               = "elb"
-  subnets            = [var.PUBLIC_SUBNET_IDS.*.id]
+  subnets            = var.PUBLIC_SUBNET_IDS.*.id
   security_groups    = [aws_security_group.allow_http_external.id]
 
   listener {
