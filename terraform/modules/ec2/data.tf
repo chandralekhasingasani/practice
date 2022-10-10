@@ -1,5 +1,5 @@
 data "aws_ami" "centos" {
-  owners      = ["679593333241"]
+  owners      = ["697140473466"]
   most_recent = true
 
   filter {
