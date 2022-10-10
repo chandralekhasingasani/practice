@@ -1,5 +1,5 @@
 - name: Install required packages
   ansible.builtin.package:
-    name: {{item}}
+    name: "{{item}}"
     state: present
     loop: {"apr-util-devel", "gcc", "pcre-devel", "libxml2-devel", "mariadb"}
