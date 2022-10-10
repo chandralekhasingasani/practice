@@ -47,14 +47,15 @@ resource "aws_instance" "web" {
   tags = {
     Name = "web"
   }
-  connection {
-    type     = "ssh"
-    user     = "centos"
-    private_key = "${file("deployer")}"
-    host     = "${element(aws_instance.web.*.private_ip,count.index)}"
-  }
+
 
   provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key = "${file("deployer")}"
+      host     = "${element(aws_instance.web.*.private_ip,count.index)}"
+    }
     inline = [
       "sudo yum install epel-release -y",
       "sudo yum install mariadb git ansible -y",
