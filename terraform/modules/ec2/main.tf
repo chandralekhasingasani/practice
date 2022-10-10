@@ -41,7 +41,8 @@ resource "aws_instance" "web" {
   instance_type = "t3.micro"
   subnet_id     = element(PUBLIC_SUBNET_IDS,count.index)
   key_name      = "deployer"
+  vpc_security_group_ids = [aws_security_group.allow_http.id,aws_security_group.allow_ssh.id]
   tags = {
-    Name = "HelloWorld"
+    Name = "web"
   }
 }
