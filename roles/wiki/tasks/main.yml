@@ -8,6 +8,7 @@
   ansible.builtin.unarchive:
     src: "https://www-eu.apache.org/dist//httpd/httpd-2.4.54.tar.gz"
     dest: /root
+    remote_src: yes
 
 - name: Compile Apache
   shell: cd /root/httpd-2.4.54 ;./configure --enable-so;make;make install
