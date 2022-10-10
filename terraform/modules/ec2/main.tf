@@ -36,18 +36,24 @@ resource "aws_s3_bucket_object" "object" {
 }
 
 resource "aws_instance" "web" {
-  depends_on    = [aws_key_pair.deployer]
-  count         = 1
-  ami           = "ami-026b57f3c383c2eec"
+  depends_on = [
+    aws_key_pair.deployer]
+  count = 1
+  ami = "ami-026b57f3c383c2eec"
   instance_type = "t3.micro"
-  subnet_id     = element(var.PUBLIC_SUBNET_IDS,count.index)
-  key_name      = "deployer-key1"
+  subnet_id = element(var.PUBLIC_SUBNET_IDS, count.index)
+  key_name = "deployer-key1"
 
-  vpc_security_group_ids = [aws_security_group.allow_http_internal.id,aws_security_group.allow_ssh.id]
+  vpc_security_group_ids = [
+    aws_security_group.allow_http_internal.id,
+    aws_security_group.allow_ssh.id]
   tags = {
     Name = "web"
   }
+}
 
+resource "null_resource" "null" {
+  count = 1
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
@@ -59,7 +65,7 @@ resource "aws_instance" "web" {
       "sudo amazon-linux-extras install epel -y" ,
       "sudo yum install mariadb git ansible -y",
       "sudo amazon-linux-extras install ansible2 -y",
-      "ansible-pull  -U https://github.com/r-devops/tw-setup.git deploy.yml -e DBHOST=${var.DBHOST} -e DBPASS=${var.DBPASS} -e DBUSER=${var.DBUSER} -e IPADDRESS=$(curl -s ifconfig.me)"
+      "ansible-pull  -U https://github.com/chandralekhasingasani/practice.git deploy.yml -e DBHOST=${var.DBHOST} -e DBPASS=${var.DBPASS} -e DBUSER=${var.DBUSER} -e IPADDRESS=$(curl -s ifconfig.me)"
     ]
   }
 }
