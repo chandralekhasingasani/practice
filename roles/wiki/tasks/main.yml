@@ -56,7 +56,7 @@
     owner: daemon
     group: daemon
 
-- name: Change file ownership, group and permissions
+- name: Remove wiki folder
   ansible.builtin.file:
     path: /usr/local/apache2/htdocs/wiki
     state: absent
