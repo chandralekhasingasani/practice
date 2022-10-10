@@ -2,7 +2,7 @@
 # Create a new load balancer
 resource "aws_elb" "bar" {
   name               = "elb"
-  subnets            = [var.PUBLIC_SUBNET_IDS]
+  subnets            = [var.PUBLIC_SUBNET_IDS.*.id]
 
   listener {
     instance_port     = 80
