@@ -28,3 +28,9 @@
 
 - name: Install dependencies
   shell: cd /root/php-7.3.7 && ./configure --with-apxs2=/usr/local/apache2/bin/apxs --enable-mbstring --enable-mysqlnd --with-mysqli && make clean && make && make install
+
+- name: Replace DirectoryIndex in httpd.conf file
+  ansible.builtin.replace:
+    path: /usr/local/apache2/conf/httpd.conf
+    regexp: 'index.html'
+    replace: '      DirectoryIndex index.html index.php'
