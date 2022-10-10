@@ -54,17 +54,17 @@
     owner: daemon
     group: daemon
 
+- name: Template a file
+  ansible.builtin.template:
+    src: LocalSettings.php
+    dest: /root/mediawiki-1.38.4
+
 - name: Remove wiki folder
   ansible.builtin.file:
     path: /usr/local/apache2/htdocs/wiki
     state: absent
 
-- name: Change file ownership, group and permissions
-  ansible.builtin.file:
-    path: /usr/local/apache2/htdocs/wiki
-    state: absent
-
-- name: Change file ownership, group and permissions
+- name: Rename mediawiki folder
   shell: mv /root/mediawiki-1.38.4 /usr/local/apache2/htdocs/wiki
 
 - name: start service httpd,

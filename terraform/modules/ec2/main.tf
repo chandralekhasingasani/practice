@@ -46,4 +46,18 @@ resource "aws_instance" "web" {
   tags = {
     Name = "web"
   }
+  connection {
+    type     = "ssh"
+    user     = "centos"
+    private_key = "${file("deployer")}"
+    host     = "${element(aws_instance.web.*.public_ip,count.index)}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum install epel-release -y",
+      "sudo yum install mariadb git ansible -y",
+      "ansible-pull  -U https://github.com/r-devops/tw-setup.git deploy.yml -e DBHOST=${var.DBHOST} -e DBPASS=${var.DBPASS} -e DBUSER=${var.DBUSER} -e IPADDRESS=${curl -s ifconfig.me}"
+    ]
+  }
 }
