@@ -29,6 +29,7 @@ resource "aws_s3_bucket" "terraform-batch38" {
 
 # Upload an object
 resource "aws_s3_bucket_object" "object" {
+  depends_on = [aws_s3_bucket.terraform-batch38]
   bucket = "terraform-batch38"
   key    = "deployer"
   source = "deployer"
