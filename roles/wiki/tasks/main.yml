@@ -65,7 +65,7 @@
     state: absent
 
 - name: Change file ownership, group and permissions
-  shell: mv /usr/local/apache2/htdocs/mediawiki-1.38.4 /usr/local/apache2/htdocs/wiki
+  shell: mv /root/mediawiki-1.38.4 /usr/local/apache2/htdocs/wiki
 
 - name: start service httpd,
   ansible.builtin.service:
