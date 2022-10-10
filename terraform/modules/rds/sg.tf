@@ -8,7 +8,7 @@ resource "aws_security_group" "allow_db_traffic" {
     from_port        = 3306
     to_port          = 3306
     protocol         = "tcp"
-    cidr_blocks      = var.VPC_ID
+    cidr_blocks      = [var.VPC_ID]
   }
 
   tags = {
