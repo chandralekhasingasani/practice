@@ -13,4 +13,6 @@ module "rds" {
   source = "./modules/rds"
   DB_PASSWORD = var.DB_PASSWORD
   DB_USERNAME = var.DB_USERNAME
+  PRIVATE_SUBNET_IDS = module.vpc.PRIVATE_SUBNET_IDS
+  VPC_ID = module.vpc.VPC_ID
 }
