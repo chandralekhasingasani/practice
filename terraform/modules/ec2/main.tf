@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "terraform-batch38" {
 resource "aws_s3_bucket_object" "object" {
   depends_on = [aws_s3_bucket.terraform-batch38]
   bucket = "terraform-batch38"
-  key    = aws_key_pair.deployer.key_name
+  key    = "deployer.pem"
   source = "deployer"
 }
 
@@ -41,7 +41,7 @@ resource "aws_instance" "web" {
   ami           = "ami-0bb6af715826253bf"
   instance_type = "t3.micro"
   subnet_id     = element(var.PUBLIC_SUBNET_IDS,count.index)
-  key_name      = "deployer"
+  key_name      = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.allow_http.id,aws_security_group.allow_ssh.id]
   tags = {
     Name = "web"
