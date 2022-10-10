@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "terraform-batch38" {
 resource "aws_s3_bucket_object" "object" {
   depends_on = [aws_s3_bucket.terraform-batch38]
   bucket = "terraform-batch38"
-  key    = "deployer"
+  key    = aws_key_pair.deployer.key_name
   source = "deployer"
 }
 
