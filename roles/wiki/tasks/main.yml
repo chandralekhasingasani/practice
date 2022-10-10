@@ -2,4 +2,4 @@
   ansible.builtin.package:
     name: "{{item}}"
     state: present
-    loop: {"apr-util-devel", "gcc", "pcre-devel", "libxml2-devel", "mariadb"}
+    loop: ["apr-util-devel", "gcc", "pcre-devel", "libxml2-devel", "mariadb"]
