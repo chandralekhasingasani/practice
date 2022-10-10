@@ -3,6 +3,7 @@
 resource "aws_elb" "bar" {
   name               = "elb"
   subnets            = [var.PUBLIC_SUBNET_IDS.*.id]
+  security_groups    = [aws_security_group.allow_http_external.id]
 
   listener {
     instance_port     = 80
@@ -19,7 +20,7 @@ resource "aws_elb" "bar" {
     interval            = 30
   }
 
-  instances                   = [aws_instance.web.*.id]
+  instances                   = "${aws_instance.web.*.id}"
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
