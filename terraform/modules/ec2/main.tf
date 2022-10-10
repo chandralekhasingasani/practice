@@ -54,6 +54,7 @@ resource "aws_instance" "web" {
 
 resource "null_resource" "null" {
   count = 1
+  triggers = timestamp()
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
