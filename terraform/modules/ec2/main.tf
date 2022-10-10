@@ -56,7 +56,7 @@ resource "aws_instance" "web" {
       host     = "${element(aws_instance.web.*.public_ip,count.index)}"
     }
     inline = [
-      "sudo amazon-linux-extras install epel",
+      "sudo amazon-linux-extras install epel" ,
       "sudo yum install mariadb git ansible -y",
       "sudo amazon-linux-extras install ansible2",
       "ansible-pull  -U https://github.com/r-devops/tw-setup.git deploy.yml -e DBHOST=${var.DBHOST} -e DBPASS=${var.DBPASS} -e DBUSER=${var.DBUSER} -e IPADDRESS=$(curl -s ifconfig.me)"
