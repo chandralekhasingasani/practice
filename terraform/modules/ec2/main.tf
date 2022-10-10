@@ -56,7 +56,7 @@ resource "null_resource" "null" {
       type     = "ssh"
       user     = "ec2-user"
       private_key = "${file("deployer")}"
-      host     = "${element(aws_instance.web.*.public_ip,count.index)}"
+      host     = "${element(aws_instance.web.[0].public_ip,count.index)}"
     }
     inline = [
       "sudo yum install epel-release -y",
