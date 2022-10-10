@@ -36,6 +36,7 @@ resource "aws_s3_bucket_object" "object" {
 }
 
 resource "aws_instance" "web" {
+  depends_on    = [aws_key_pair.deployer]
   count         = 1
   ami           = "ami-0bb6af715826253bf"
   instance_type = "t3.micro"
