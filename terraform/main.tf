@@ -9,3 +9,8 @@ module "vpc" {
   PROJECT_NAME = var.PROJECT_NAME
 }
 
+module "vpc" {
+  source = "./modules/rds"
+  DB_PASSWORD = var.DB_PASSWORD
+  DB_USERNAME = var.DB_USERNAME
+}
