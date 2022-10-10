@@ -23,5 +23,8 @@ module "ec2" {
   PUBLIC_SUBNET_IDS = module.vpc.PUBLIC_SUBNET_IDS
   VPC_ID = module.vpc.VPC_ID
   CIDR_BLOCK = var.CIDR_BLOCK
+  DBPASS = var.DB_PASSWORD
+  DBUSER = var.DB_USERNAME
+  DBHOST = module.rds.DB_HOST
 }
 
