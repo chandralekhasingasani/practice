@@ -1,0 +1,4 @@
+- name: Run the main playbook
+  hosts: localhost
+  roles:
+    - role : wiki

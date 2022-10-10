@@ -8,3 +8,4 @@ module "vpc" {
   CIDR_BLOCK = var.CIDR_BLOCK
   PROJECT_NAME = var.PROJECT_NAME
 }
+
