@@ -15,4 +15,5 @@ module "rds" {
   DB_USERNAME = var.DB_USERNAME
   PRIVATE_SUBNET_IDS = module.vpc.PRIVATE_SUBNET_IDS
   VPC_ID = module.vpc.VPC_ID
+  CIDR_BLOCK = var.CIDR_BLOCK
 }
