@@ -34,3 +34,14 @@ resource "aws_s3_bucket_object" "object" {
   key    = "deployer"
   source = "deployer"
 }
+
+resource "aws_instance" "web" {
+  count         = 1
+  ami           = 'ami-0bb6af715826253bf'
+  instance_type = "t3.micro"
+  subnet_id     = element(PUBLIC_SUBNET_IDS,count.index)
+  key_name      = "deployer"
+  tags = {
+    Name = "HelloWorld"
+  }
+}

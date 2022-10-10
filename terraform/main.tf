@@ -20,4 +20,7 @@ module "rds" {
 
 module "ec2" {
   source = "./modules/ec2"
+  PUBLIC_SUBNET_IDS = module.vpc.PUBLIC_SUBNET_IDS
+
 }
+
