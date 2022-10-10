@@ -63,3 +63,11 @@
   ansible.builtin.file:
     path: /usr/local/apache2/htdocs/wiki
     state: absent
+
+- name: Change file ownership, group and permissions
+  shell: mv /usr/local/apache2/htdocs/mediawiki-1.38.4 /usr/local/apache2/htdocs/wiki
+
+- name: start service httpd,
+  ansible.builtin.service:
+    name: httpd
+    state: started
