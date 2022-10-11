@@ -17,7 +17,7 @@ pipeline {
 
         stage('Terraform Apply'){
             when {
-                    expression { parameters.DEPLOYMENT == 'create' }
+                    expression { params.DEPLOYMENT == 'create' }
                 }
             steps{
                sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID; export  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY; export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ;pwd;cd terraform ; touch deployer ;terraform init; terraform apply -auto-approve -var DB_PASSWORD=$DB_PASSWORD -var DB_USERNAME=$DB_USERNAME'
@@ -26,7 +26,7 @@ pipeline {
 
         stage('Terraform Destroy'){
             when {
-                                expression { parameters.DEPLOYMENT == 'destroy' }
+                                expression { params.DEPLOYMENT == 'destroy' }
                             }
               steps{
                    sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID; export  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY; export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ;pwd;cd terraform ; touch deployer ;terraform init; terraform destroy -auto-approve -var DB_PASSWORD=$DB_PASSWORD -var DB_USERNAME=$DB_USERNAME'
