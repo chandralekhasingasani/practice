@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         string(name: 'DB_PASSWORD', description: 'DB_PASSWORD')
-        string(name: 'DB_USERNAME', description: 'DB_USERNAME')
+        password(name: 'DB_USERNAME', description: 'DB_USERNAME')
     }
     stages {
         stage('Clone repo') {
