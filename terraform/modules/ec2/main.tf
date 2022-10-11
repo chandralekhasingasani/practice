@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "terraform-batch38" {
 }
 
 # Upload an object
-resource "aws_s3_bucket_object" "object" {
+resource "aws_s3_object" "object" {
   depends_on = [aws_s3_bucket.terraform-batch38]
   bucket = "terraform-batch38"
   key    = "deployer.pem"
@@ -42,7 +42,7 @@ resource "aws_instance" "web" {
   ami = "ami-026b57f3c383c2eec"
   instance_type = "t3.micro"
   subnet_id = element(var.PUBLIC_SUBNET_IDS, count.index)
-  key_name = "deployer-key1"
+  key_name = "deployer-key"
 
   vpc_security_group_ids = [
     aws_security_group.allow_http_internal.id,
