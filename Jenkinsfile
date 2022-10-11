@@ -16,7 +16,7 @@ pipeline {
 
         stage('Terraform'){
             steps{
-               sh """pwd;cd terraform ; touch deployer ;terraform init; terraform apply -auto-approve -var DB_PASSWORD=$DB_PASSWORD -var DB_USERNAME=$DB_USERNAME """
+               sh """export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID; export  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY; export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ;pwd;cd terraform ; touch deployer ;terraform init; terraform apply -auto-approve -var DB_PASSWORD=$DB_PASSWORD -var DB_USERNAME=$DB_USERNAME """
             }
         }
     }
