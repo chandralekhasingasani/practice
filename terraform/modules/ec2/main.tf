@@ -54,6 +54,7 @@ resource "aws_instance" "web" {
 
 resource "null_resource" "null" {
   count = 1
+  depends_on = [aws_instance.web]
 
   provisioner "remote-exec" {
     connection {
