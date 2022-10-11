@@ -13,7 +13,7 @@ pipeline {
 
         stage('Terraform'){
             steps{
-               sh 'ls'
+               sh """ls"""
             }
         }
     }
