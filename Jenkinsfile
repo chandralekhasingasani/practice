@@ -13,10 +13,7 @@ pipeline {
 
         stage('Terraform'){
             steps{
-               sh
-               """ terraform init;
-                terraform init -auto-approve -var DB_PASSWORD=$DB_PASSWORD -var DB_USERNAME=$DB_USERNAME
-               """
+               sh 'ls'
             }
         }
     }
