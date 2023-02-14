@@ -34,3 +34,6 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd
+
+- name: Systemd start service
+  ansible.builtin.debug: "hello"
