@@ -30,10 +30,7 @@
     src: localhost.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: Systemd start service
-  ansible.builtin.import_role:
+- name: Systemd
+  import_role:
     name: common
-    tasks_from: systemd
-
-- name: Systemd start service
-  ansible.builtin.debug: "hello"
+    tasks_from: systemd.yml
