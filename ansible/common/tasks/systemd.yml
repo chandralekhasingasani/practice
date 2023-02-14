@@ -1,5 +1,5 @@
 - name: Call systemd service
   ansible.builtin.systemd:
-    name: {{ COMPONENT }}
+    name: "{{ COMPONENT }}"
     state: restarted
     enabled: true
