@@ -9,20 +9,22 @@
     dest: /tmp/
     remote_src: yes
 
-#ECHO "Installing Nginx"
-#yum install nginx -y &>>${LOG_FILE}
-#statusCheck $?
-#
-#ECHO "Downloading Frontend Code"
-#curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>${LOG_FILE}
-#statusCheck $?
-#
-#cd /usr/share/nginx/html
-#
-#ECHO "Removing Old Files"
-#rm -rf * &>>${LOG_FILE}
-#statusCheck $?
-#
+- name: Recursively remove directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
+
+- name: Recursively remove directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
+
+- name: Copy a "sudoers" file on the remote machine for editing
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+
 #ECHO "Extracting Zip Content"
 #unzip /tmp/frontend.zip &>>${LOG_FILE}
 #statusCheck $?
