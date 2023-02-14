@@ -1,0 +1,5 @@
+- name: Run the main playbook
+  hosts: localhost
+  become: yes
+  roles:
+    - role : {{frontend}}
