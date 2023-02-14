@@ -20,18 +20,23 @@
     dest: /usr/share/nginx/html/
     remote_src: yes
 
-#ECHO "Extracting Zip Content"
-#unzip /tmp/frontend.zip &>>${LOG_FILE}
-#statusCheck $?
-#
-#ECHO "Copying extracted Content"
-#mv frontend-main/* . &>>${LOG_FILE} && mv static/* . &>>${LOG_FILE} && rm -rf frontend-main README.md &>>${LOG_FILE}
-#statusCheck $?
-#
-#ECHO "Copy RoboShop Nginx Config"
-#mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>${LOG_FILE}
-#statusCheck $?
-#
+- name: Copy Nginx Configuration
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: Copy roboshop.conf
+  ansible.builtin.template:
+    src: localhost.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Systemd start service
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+  ignore_errors: true
+
+
 #ECHO "Update Nginx Configuration"
 #for component in catalogue user cart shipping payment ; do
 #ECHO "Update Configuration for ${component}"
